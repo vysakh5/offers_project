@@ -21,9 +21,17 @@ export default function Dashbord() {
     getData();
   }, []);
 
-  const getData = async (e) => {
-    let response = await getRequest('offers/get-all-offers');
-    if (response.data.statusCode === 200) {
+  const getData = async (searchText) => {
+    let response;
+    if (searchText) {
+      response = await getRequest(
+        `offers/get-all-offers?searchText=${searchText}`
+      );
+    } else {
+      response = await getRequest(`offers/get-all-offers`);
+    }
+
+    if (response.data.statusCode === 200 && response.data.data) {
       setBanerList(response.data.data);
     }
   };
@@ -56,88 +64,81 @@ export default function Dashbord() {
     }
   };
 
-  const OffersList = () => {
-    return (
-      <div>
-        <Card className='p-2'>
-          <Table striped bordered hover>
-            <thead>
-              <Row>
-                <Col md='12'>
-                  <Form.Group
-                    className='mb-3'
-                    controlId='formBasicEmail'
-                    className='m-2'
-                  >
-                    <Form.Control
-                      type='text'
-                      name='searchText'
-                      // onChange={handleChange}
-
-                      placeholder=' Search'
-                    />
-                  </Form.Group>
-                </Col>
-              </Row>
-
-              <tr className='bg-dark text-light'>
-                <th>Sl No</th>
-                <th>Title</th>
-                <th>Desktop Image</th>
-                <th>Mobile Image</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {banerList.map((item, key) => {
-                return (
-                  <tr>
-                    <td>{key + 1}</td>
-                    <td>{item.title}</td>
-
-                    <td>
-                      <img
-                        src={`${CONFIG.BASE_URL}/${item.desktopImg}`}
-                        height='80px'
-                      />
-                    </td>
-                    <td>
-                      <img
-                        src={`${CONFIG.BASE_URL}/${item.mobImg}`}
-                        height='80px'
-                      />
-                    </td>
-                    <td>
-                      <Button
-                        onClick={() => onDelete(item._id)}
-                        variant='light'
-                        className='m-1'
-                      >
-                        <i className='fas fa-trash'></i>
-                      </Button>
-                      <Button variant='light' className='m-1'>
-                        <i className='fas fa-pencil-alt'></i>
-                      </Button>
-                      <Button variant='light' className='m-1'>
-                        <i className='fas fa-thumbs-up'></i>
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-        </Card>
-      </div>
-    );
-  };
-
   return (
     <div className='m-4'>
       <Alert variant='warning'>&nbsp; {msg} </Alert>
       <Row>
         <Col lg='8' md='12'>
-          <OffersList />
+          <div>
+            <Card className='p-2'>
+              <Row>
+                <Col lg='12'>
+                  <Form.Group
+                    className='mb-3'
+                    controlId='formBasicEmail'
+                    className='m-2'
+                    style={{ width: '95%' }}
+                  >
+                    <Form.Control
+                      type='text'
+                      name='searchText'
+                      onChange={(e) => getData(e.target.value)}
+                      placeholder=' Search'
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Table striped bordered hover>
+                <thead>
+                  <tr className='bg-dark text-light'>
+                    <th>Sl No</th>
+                    <th>Title</th>
+                    <th>Desktop Image</th>
+                    <th>Mobile Image</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {banerList.map((item, key) => {
+                    return (
+                      <tr>
+                        <td>{key + 1}</td>
+                        <td>{item.title}</td>
+
+                        <td>
+                          <img
+                            src={`${CONFIG.BASE_URL}/${item.desktopImg}`}
+                            height='80px'
+                          />
+                        </td>
+                        <td>
+                          <img
+                            src={`${CONFIG.BASE_URL}/${item.mobImg}`}
+                            height='80px'
+                          />
+                        </td>
+                        <td>
+                          <Button
+                            onClick={() => onDelete(item._id)}
+                            variant='light'
+                            className='m-1'
+                          >
+                            <i className='fas fa-trash'></i>
+                          </Button>
+                          <Button variant='light' className='m-1'>
+                            <i className='fas fa-pencil-alt'></i>
+                          </Button>
+                          <Button variant='light' className='m-1'>
+                            <i className='fas fa-thumbs-up'></i>
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </Card>
+          </div>
         </Col>
         <Col lg='4' md='12'>
           <div>

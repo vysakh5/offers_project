@@ -13,16 +13,26 @@ export default function Home() {
   }, []);
 
   const getData = async (e) => {
-    let response = await getRequest('offers/get-all-offers');
+    let response = await getRequest('offers/get-current-offers');
     if (response.data.statusCode === 200) {
       setBanerList(response.data.data);
     }
   };
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
-  console.log('💢🔥', isTabletOrMobile);
 
-  if (isTabletOrMobile) {
+  if (!banerList) {
+    return (
+      <div className='home'>
+        <div className='title-offer'></div>
+        <Row className='m-5'>
+          <Col md='12' className='text-center'>
+            <h2>No Offers found</h2>
+          </Col>
+        </Row>
+      </div>
+    );
+  } else if (isTabletOrMobile) {
     return (
       <div className='home'>
         <div className='title-offer'></div>

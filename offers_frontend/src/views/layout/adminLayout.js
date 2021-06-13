@@ -3,7 +3,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 export default function AdminLayout({ children }) {
   return (
     <div>
-      <Navbar bg='light' variant='light'>
+      <Navbar bg='light' variant='light' className='dashbord-nav'>
         <Navbar.Brand href='#home'>Banner</Navbar.Brand>
         <Nav className='ml-auto'>
           <Nav.Link href='#home'>

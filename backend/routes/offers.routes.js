@@ -10,10 +10,7 @@ OfferRouter.route('/add-offer').post(
 );
 
 OfferRouter.route('/get-all-offers').get(offers.getAllOffers);
-OfferRouter.route('/get-current-offers').get(
-  auth.isLogedin,
-  offers.getCurrentOffers
-);
+OfferRouter.route('/get-current-offers').get(offers.getCurrentOffers);
 
 OfferRouter.route('/edit-offer').patch(
   auth.isLogedin,

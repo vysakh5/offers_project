@@ -68,19 +68,17 @@ exports.createOffers = async (req, res) => {
   });
 };
 
-// all offers for admin
+// all offers
 exports.getAllOffers = async (req, res) => {
-  // let params = req.query;
-  // if (!params.id) {
-  //   return res.send({
-  //     msg: 'id can not be empty',
-  //     statusCode: 400,
-  //     error: true,
-  //     data: null,
-  //   });
-  // }
+  let params = req.query;
 
-  let offersList = await Offers.find()
+  let findCriteria = {};
+
+  if (params.searchText) {
+    findCriteria = { title: { $regex: params.searchText, $options: 'i' } };
+  }
+
+  let offersList = await Offers.find(findCriteria)
     .lean()
     .catch((error) => {
       console.log(error);
@@ -109,12 +107,13 @@ exports.getAllOffers = async (req, res) => {
   }
 };
 
-//TODO:date less and great
 //current offers
 exports.getCurrentOffers = async (req, res) => {
   let currentDate = Date.now();
-  console.log('⚡💥🔥', currentDate);
-  let findCriteria = { fromDate: { $gte: currentDate } };
+  let findCriteria = {
+    fromDate: { $lte: currentDate },
+    toDate: { $gte: currentDate },
+  };
 
   let offersList = await Offers.find(findCriteria)
     .lean()

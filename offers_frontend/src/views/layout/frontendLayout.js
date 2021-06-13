@@ -3,38 +3,44 @@ import { Nav, Navbar, Row, Col } from 'react-bootstrap';
 export default function AdminLayout({ children }) {
   return (
     <div>
-      <Navbar className='frontend-navbar'>
+      <Navbar collapseOnSelect expand='lg' className='frontend-navbar'>
         <Navbar.Brand href='#home' className='nav-text'>
           <strong>Nimbus</strong>
         </Navbar.Brand>
-        <Nav className='ml-auto'>
-          <Nav.Link href='#features' className='text-white'>
-            Home
-          </Nav.Link>
-          <Nav.Link href='#features' className='text-white'>
-            Product
-          </Nav.Link>
-          <Nav.Link href='#features' className='text-white'>
-            Offers
-          </Nav.Link>
-          <Nav.Link href='#features' className='text-white'>
-            About us
-          </Nav.Link>
-          <Nav.Link href='#features' className='text-white'>
-            Contact us
-          </Nav.Link>
-          <Nav.Link href='#home' className='nav-text'>
-            {' '}
-            <i className='fas fa-search'></i>
-          </Nav.Link>
-          <Nav.Link href='#home' className='nav-text'>
-            {' '}
-            <i className='fas fa-shopping-cart'></i>
-          </Nav.Link>
-          <Nav.Link href='#features' className='nav-text'>
-            <i className='far fa-user'></i>
-          </Nav.Link>
-        </Nav>
+        <Navbar.Toggle
+          className='nav-toggle'
+          aria-controls='responsive-navbar-nav'
+        />
+        <Navbar.Collapse id='responsive-navbar-nav'>
+          <Nav className='justify-content-end' style={{ width: '95%' }}>
+            <Nav.Link href='#features' className='text-white'>
+              Home
+            </Nav.Link>
+            <Nav.Link href='#features' className='text-white'>
+              Product
+            </Nav.Link>
+            <Nav.Link href='#features' className='text-white'>
+              Offers
+            </Nav.Link>
+            <Nav.Link href='#features' className='text-white'>
+              About us
+            </Nav.Link>
+            <Nav.Link href='#features' className='text-white'>
+              Contact us
+            </Nav.Link>
+            <Nav.Link href='#home' className='nav-text'>
+              {' '}
+              <i className='fas fa-search'></i>
+            </Nav.Link>
+            <Nav.Link href='#home' className='nav-text'>
+              {' '}
+              <i className='fas fa-shopping-cart'></i>
+            </Nav.Link>
+            <Nav.Link href='#features' className='nav-text'>
+              <i className='far fa-user'></i>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
 
       {children}

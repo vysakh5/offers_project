@@ -24,7 +24,7 @@
   min-height: 80vh;
 }
 .title-offer {
-  background-color: burlywood;
+  background-color: rgb(255, 255, 255);
   background-image: url('https://www.footopia-london.com/wpcore/wp-content/uploads/2014/10/offers.jpg');
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
@@ -36,4 +36,11 @@
   margin: 20px;
   border-radius: 20px;
   border: 2px solid #9b9b9b;
+}
+.nav-toggle {
+  background-color: rgb(255, 177, 75) !important;
+}
+
+.dashbord-nav {
+  box-shadow: -10px 15px 11px -17px rgba(0, 0, 0, 0.75);
 }
