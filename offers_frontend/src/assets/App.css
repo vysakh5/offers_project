@@ -1,0 +1,39 @@
+.frontend-navbar {
+  background-color: black;
+  box-shadow: -10px 15px 11px -17px rgba(0, 0, 0, 0.75);
+}
+.nav-text {
+  color: rgb(255, 177, 75) !important;
+}
+.text-white {
+  color: white;
+}
+.footer {
+  color: rgb(255, 177, 75) !important;
+  padding: 20px;
+  background-color: black;
+}
+.icons {
+  background-color: rgb(255, 177, 75);
+  color: white;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 10px;
+}
+.home {
+  min-height: 80vh;
+}
+.title-offer {
+  background-color: burlywood;
+  background-image: url('https://www.footopia-london.com/wpcore/wp-content/uploads/2014/10/offers.jpg');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 25vh;
+}
+
+.img-box {
+  margin: 20px;
+  border-radius: 20px;
+  border: 2px solid #9b9b9b;
+}

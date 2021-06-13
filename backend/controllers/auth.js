@@ -161,3 +161,15 @@ exports.signin = async (req, res) => {
     data: signinUser,
   });
 };
+
+exports.verifyToken = async (req, res) => {
+  console.log(req.user.name, req.user.role, '  Verified !!');
+
+  return res.send({
+    Message: 'Token Succesfully verified',
+    statusCode: 200,
+    verified: true,
+    role: req.user.role,
+    error: false,
+  });
+};

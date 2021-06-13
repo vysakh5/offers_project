@@ -43,6 +43,7 @@ app.use(
   })
 );
 app.use(bodyparser.json());
+app.use(express.static('uploads'));
 
 //Create a demo admin @ 1st
 auth.createAdmin();

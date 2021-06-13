@@ -9,7 +9,7 @@ OfferRouter.route('/add-offer').post(
   offers.createOffers
 );
 
-OfferRouter.route('/get-all-offers').get(auth.isLogedin, offers.getAllOffers);
+OfferRouter.route('/get-all-offers').get(offers.getAllOffers);
 OfferRouter.route('/get-current-offers').get(
   auth.isLogedin,
   offers.getCurrentOffers
